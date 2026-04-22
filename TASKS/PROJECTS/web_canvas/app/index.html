@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Canvas</title>
+    <link rel="stylesheet" href="styles.css?v=20260420-reset">
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="canvas-panel" aria-label="Mind map canvas">
+        <div class="topbar">
+          <button id="zoomOut" type="button">축소</button>
+          <button id="zoomReset" type="button">100%</button>
+          <button id="zoomIn" type="button">확대</button>
+          <button id="createGroup" type="button">그룹</button>
+          <button id="exportBtn" type="button">Export</button>
+          <button id="importBtn" type="button">Import</button>
+          <button id="resetSavedBtn" type="button">Reset Saved</button>
+          <input id="jsonImportInput" type="file" accept="application/json,.json" hidden>
+          <span id="statusText">더블 클릭으로 노드 생성</span>
+        </div>
+
+        <div id="canvasWrap"></div>
+
+        <section class="detail-panel" id="detailPanel" aria-label="Object details" hidden>
+          <div class="detail-head">
+            <span id="detailType">상세</span>
+            <button id="closeDetail" type="button" aria-label="상세 닫기">x</button>
+          </div>
+          <label id="titleLabel">
+            제목
+            <input id="nodeText" type="text" placeholder="제목을 입력하세요">
+          </label>
+          <div class="style-grid" id="nodeStyleControls">
+            <label>
+              노드 색
+              <input id="nodeFill" type="color">
+            </label>
+            <label>
+              글자 색
+              <input id="nodeTextColor" type="color">
+            </label>
+            <label>
+              폰트
+              <select id="nodeFontFamily">
+                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+              </select>
+            </label>
+            <label>
+              크기
+              <input id="nodeFontSize" type="number" min="10" max="32" step="1">
+            </label>
+          </div>
+          <label id="noteLabel">
+            메모
+            <textarea id="nodeNote" rows="4" placeholder="Ctrl+V, 이미지, 링크, 텍스트를 붙여 넣으세요"></textarea>
+          </label>
+          <label id="linkLabel">
+            링크
+            <input id="nodeLink" type="url" placeholder="https://example.com">
+          </label>
+          <label id="payloadLabel">
+            배경 데이터
+            <textarea id="nodePayload" rows="4" placeholder="첨부 없음"></textarea>
+          </label>
+          <div id="childContent" class="child-content">하위 콘텐츠 없음</div>
+        </section>
+      </section>
+
+      <aside class="side-panel" aria-label="Command and data panel">
+        <section class="drop-zone" id="referenceDrop">
+          <strong>참고 불러오기</strong>
+          <span>Excel, Markdown, CSV, 붙여넣기 텍스트를 드래그해서 놓기</span>
+          <input id="fileInput" type="file" accept=".md,.markdown,.txt,.csv,.tsv,.xls,.xlsx" multiple>
+        </section>
+
+        <section class="chat-panel">
+          <h2>Command</h2>
+          <div class="command-hints">
+            <strong>기본 명령</strong>
+            <div>추가 아이디어 · 삭제 · 연결 다른노드 · 그룹 · 취소 · 다시 · 메모 텍스트 · 링크 URL · 하위 텍스트 · 초기화</div>
+          </div>
+          <div id="chatLog" class="chat-log" aria-live="polite"></div>
+          <form id="commandForm">
+            <input id="commandInput" type="text" autocomplete="off" placeholder="예: 추가 아이디어, 연결 다른노드, 그룹, 취소">
+            <button type="submit">실행</button>
+            <button id="aiCommandBtn" type="button">AI 실행</button>
+          </form>
+        </section>
+      </aside>
+    </main>
+
+    <script src="app.js?v=20260420-reset"></script>
+  </body>
+</html>
