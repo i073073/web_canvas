@@ -1,0 +1,140 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "text": "Jarvis_Starter_Pack-main",
+      "x": 94,
+      "y": 452,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "선택하면 상세창에 메모와 하위 콘텐츠가 보입니다.",
+      "link": "",
+      "payload": "Jarvis_Starter_Pack-main",
+      "children": [
+        "하위 콘텐츠 예시"
+      ]
+    },
+    {
+      "id": "node_2",
+      "text": "ai_coder_team",
+      "x": 335,
+      "y": 447,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "AI개발 도우미\n",
+      "link": "",
+      "payload": "ai_coder_team",
+      "children": []
+    },
+    {
+      "id": "node_3",
+      "text": "qwen3.6:latest",
+      "x": 603.9266,
+      "y": 331.86940000000004,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "",
+      "link": "",
+      "payload": "",
+      "children": []
+    },
+    {
+      "id": "node_5",
+      "text": "task-capsule-dashboard",
+      "x": 332.979,
+      "y": 553.4613999999999,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "진행 중인 작업을 TASKS 중심으로 관리하고, 완료된 작업은 CAPSULES 형태로 요약하며, 실행/검증 기록은 LOGS에 남기는 개인 AI 작업 지휘실을 만든다. @-->",
+      "link": "",
+      "payload": "진행 중인 작업을 TASKS 중심으로 관리하고, 완료된 작업은 CAPSULES 형태로 요약하며, 실행/검증 기록은 LOGS에 남기는 개인 AI 작업 지휘실을 만든다.",
+      "children": []
+    },
+    {
+      "id": "node_6",
+      "text": "Codex - gpt-5.4",
+      "x": 877.9513999999997,
+      "y": 546.5919999999998,
+      "width": 170,
+      "height": 62,
+      "groupId": "group_12",
+      "note": "",
+      "link": "",
+      "payload": "",
+      "children": []
+    },
+    {
+      "id": "node_8",
+      "text": "auto",
+      "x": 324.96469999999994,
+      "y": 662.2268999999999,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "prompt @monica",
+      "link": "",
+      "payload": "AutoBench 카파치 프로젝트 부트스트랩",
+      "children": []
+    },
+    {
+      "id": "node_9",
+      "text": "web_canvas",
+      "x": 344.428,
+      "y": 250.06289999999984,
+      "width": 170,
+      "height": 62,
+      "groupId": null,
+      "note": "브레인스토밍 회의하는 웹앱",
+      "link": "",
+      "payload": "",
+      "children": []
+    },
+    {
+      "id": "node_10",
+      "text": "Codex - gpt-5.4 medium",
+      "x": 888.2554999999999,
+      "y": 653.0677,
+      "width": 170,
+      "height": 62,
+      "groupId": "group_12",
+      "note": "",
+      "link": "",
+      "payload": "",
+      "children": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_4",
+      "from": "node_2",
+      "to": "node_3",
+      "label": ""
+    },
+    {
+      "id": "edge_7",
+      "from": "node_5",
+      "to": "node_6",
+      "label": ""
+    },
+    {
+      "id": "edge_11",
+      "from": "node_8",
+      "to": "node_10",
+      "label": ""
+    }
+  ],
+  "groups": [
+    {
+      "id": "group_12",
+      "title": "그룹",
+      "x": 851.9513999999997,
+      "y": 520.5919999999998,
+      "width": 232.30410000000006,
+      "height": 220.4757000000002
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+:root {
+  color-scheme: light dark;
+  --ink: #172026;
+  --muted: #60717a;
+  --line: #d8e0e4;
+  --panel: #f6f8f9;
+  --paper: #ffffff;
+  --canvas: #f9fbfc;
+  --grid: rgba(70, 96, 110, 0.14);
+  --overlay: rgba(255, 255, 255, 0.9);
+  --accent: #0f8b8d;
+  --accent-strong: #0a6b6d;
+  --edge: #51666f;
+  --node: #ffffff;
+  --node-selected: #fff5cc;
+  --mark: #f2c94c;
+  --shadow: rgba(15, 26, 32, 0.16);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #edf5f7;
+    --muted: #9aa9b0;
+    --line: #243440;
+    --panel: #0f1720;
+    --paper: #121d28;
+    --canvas: #0b1320;
+    --grid: rgba(130, 160, 176, 0.12);
+    --overlay: rgba(18, 29, 40, 0.88);
+    --accent: #72d0d2;
+    --accent-strong: #95e1e3;
+    --edge: #95a7b0;
+    --node: #142232;
+    --node-selected: #483d18;
+    --mark: #f1c84b;
+    --shadow: rgba(0, 0, 0, 0.38);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--canvas);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.command-hints {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.command-hints strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  min-height: 0;
+  padding: 10px;
+  font-size: 13px;
+}
+
+#commandForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 6px;
+}
+
+#commandInput {
+  font-size: 13px;
+  padding: 8px;
+}
+
+.chat-panel button {
+  font-size: 12px;
+  padding: 7px 10px;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  height: 100vh;
+}
+
+.canvas-panel {
+  position: relative;
+  min-width: 0;
+  height: 100vh;
+  background:
+    radial-gradient(circle, var(--grid) 1px, transparent 1px),
+    var(--canvas);
+  background-size: 28px 28px;
+}
+
+.topbar {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--overlay);
+  box-shadow: 0 8px 24px var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+#statusText {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+#canvasWrap {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-panel {
+  position: absolute;
+  z-index: 4;
+  width: min(360px, calc(100% - 32px));
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  border-radius: 8px;
+  background: var(--overlay);
+  box-shadow: 0 12px 32px var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.detail-panel[hidden] {
+  display: none;
+}
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+#detailType {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+#closeDetail {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.side-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 12px;
+  height: 100vh;
+  padding: 12px;
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.drop-zone,
+.chat-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.drop-zone {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+}
+
+.drop-zone.dragging {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+}
+
+.drop-zone span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.drop-zone input {
+  width: 100%;
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  min-height: 0;
+  padding: 12px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  color: var(--ink);
+  background: var(--paper);
+  resize: vertical;
+}
+
+.style-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.style-grid input[type="color"] {
+  height: 38px;
+  padding: 3px;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.child-content {
+  min-height: 38px;
+  padding: 8px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.chat-log {
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 3px;
+}
+
+.message {
+  border-radius: 8px;
+  padding: 8px;
+  line-height: 1.35;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.message.system {
+  background: color-mix(in srgb, var(--muted) 10%, var(--paper));
+  color: var(--muted);
+}
+
+.message.user {
+  background: color-mix(in srgb, var(--muted) 18%, var(--paper));
+  color: var(--muted);
+}
+
+.message.action {
+  background: color-mix(in srgb, var(--muted) 14%, var(--paper));
+  color: var(--muted);
+}
+
+#commandForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+dialog {
+  width: min(720px, calc(100vw - 32px));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.dialog-body {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 65vh auto;
+    height: auto;
+  }
+
+  .canvas-panel {
+    height: 65vh;
+  }
+
+  .side-panel {
+    height: auto;
+    min-height: 35vh;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  #statusText {
+    width: 100%;
+    margin-left: 0;
+  }
+}

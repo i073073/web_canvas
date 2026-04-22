@@ -1,0 +1,27 @@
+# MISSION
+
+- project_id: web_canvas
+- goal: Build a browser-based interactive mind map and brainstorming board.
+- problem: Users need a large canvas for creating, linking, grouping, importing, exporting, and command-controlling connected ideas.
+- scope_in:
+  - Full-screen Konva canvas.
+  - Double-click node creation.
+  - Draggable nodes and live-updating arrows.
+  - Drag-to-connect handles.
+  - Group containers with membership and movement behavior.
+  - Central state object with render-on-change.
+  - JSON export/import using `{ nodes: [], edges: [], groups: [] }`.
+  - Command chat for add/delete/connect/group/undo/redo.
+  - Node notes, hidden child content, clipboard metadata storage.
+  - Excel/Markdown/CSV/import drop zone.
+  - Large pannable and zoomable canvas.
+- scope_out:
+  - Backend persistence.
+  - Real NLP/LLM integration.
+  - Offline vendor copies of CDN libraries.
+  - Multi-user collaboration.
+- success_criteria:
+  - `app/index.html` opens without a build step.
+  - Core interactions work with mouse and command input.
+  - Exported JSON can restore the visible state.
+  - Undo/redo can reverse state changes.
